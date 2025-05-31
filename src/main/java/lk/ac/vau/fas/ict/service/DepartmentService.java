@@ -33,4 +33,8 @@ public class DepartmentService {
     }
 
 
+	public Department getDepts(int id) {
+    return repo.findById(id).orElse(null);
+}
+
 }

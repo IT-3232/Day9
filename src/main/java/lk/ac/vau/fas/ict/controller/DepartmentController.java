@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,19 @@ public class DepartmentController {
     return new ResponseEntity<>("New department added", HttpStatus.CREATED);
    }
 
-   
+  @PutMapping("/{id}")
+public ResponseEntity<String> updateDept(@PathVariable("id") int id, @RequestBody Department department) {
+    // Check if department with given id exists
+    if (service.getDepts(id) == null) {
+        return new ResponseEntity<>("Couldn't find the department", HttpStatus.NOT_FOUND);
+    }
+    department.setId(id);
+    
+    service.saveDept(department);
+    
+    return new ResponseEntity<>("The department updated", HttpStatus.OK);
+}
+
 
    
 }
