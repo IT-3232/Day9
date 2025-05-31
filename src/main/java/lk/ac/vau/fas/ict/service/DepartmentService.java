@@ -37,4 +37,9 @@ public class DepartmentService {
     return repo.findById(id).orElse(null);
 }
 
+public void deleteDept(int id) {
+    repo.deleteById(id);
+}
+
+
 }

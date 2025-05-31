@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,6 +58,17 @@ public ResponseEntity<String> updateDept(@PathVariable("id") int id, @RequestBod
     return new ResponseEntity<>("The department updated", HttpStatus.OK);
 }
 
+@DeleteMapping("/{id}")
+public ResponseEntity<String> deleteDept(@PathVariable("id") int id) {
+    Department dept = service.getDept(id);
+    
+    if (dept == null) {
+        return new ResponseEntity<>("Couldn't find the department", HttpStatus.NOT_FOUND);
+    }
+
+    service.deleteDept(id);
+    return new ResponseEntity<>("The department deleted", HttpStatus.OK);
+}
 
    
 }
