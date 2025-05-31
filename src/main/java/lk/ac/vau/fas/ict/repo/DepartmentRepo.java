@@ -8,5 +8,5 @@ import lk.ac.vau.fas.ict.model.Department;
 
 @Repository
 public interface DepartmentRepo extends JpaRepository<Department, Integer> {
-
+ 
 }

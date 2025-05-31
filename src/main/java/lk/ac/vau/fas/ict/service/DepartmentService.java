@@ -27,4 +27,10 @@ public class DepartmentService {
 		}
 		return repo.findById(id).get();
 	}
+
+	public Department saveDept(Department dept) {
+    return repo.save(dept);
+    }
+
+
 }
